@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./vue.js"></script>
+    <title>Document</title>
+    <style>
+    .redb{
+        background:#f00;
+    }
+    .greenb{
+        background:#0f0;
+    }
+    </style>
+</head>
+<body>
+
+    <div id="example">
+        <p v-if="seen">Original message:"{{message}}"</p>
+        <p v-bind:class="[a?red:green]" v-on:click="bgstyle">Computed reversed message:"{{reverseMessage()}}"</p>
+        <p v-for="n in even(numbers)">{{n}}</p>
+    
+        <form>
+            单项选择：<select v-model="selected">
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+            </select>
+            <p>迩选中的是：{{selected}}</p>
+            课程选择（绑定数组）：<select v-model="courses" multiple>
+                <option>css</option>
+                <option>js</option>
+                <option>jQuery</option>
+            </select>
+            <p>迩选择的课程：{{courses}}</p>
+            出生年：<select v-model="ages">
+                <option v-for="time in birth" v-bind:value="time.age">{{time.year}}</option>
+            </select>
+            <p>迩的年龄：{{ages}}</p>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        var vm= new Vue({
+            el:'#example',
+            data:{
+                message:'beybey',
+                seen:false,
+                numbers:[1,2,3,4,5],
+                selected:null,//单选的
+                courses:[],//可以多选的
+                ages:0,//v-model绑定的名称
+                birth:[
+                {year:1994,age:24},//v-for遍历option内容
+                {year:1993,age:25},
+                {year:1992,age:26},
+                {year:1991,age:27},
+                {year:1990,age:28},
+                ],
+                a:true,
+                red:"redb",
+                green:"greenb"
+            },
+            methods: {
+                reverseMessage: function () {
+                    return this.message.split('').reverse().join('')
+                },
+                even:function(numbers){
+                    return numbers.filter(function (numbers){
+                        return numbers % 2===0
+                    })
+                },
+                bgstyle:function(){
+                    if(this.a){
+                        this.a=false
+                    }else{
+                        this.a=true
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

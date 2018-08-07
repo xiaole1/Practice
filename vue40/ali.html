@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+        <style>
+            #container{
+                width:100%;
+                height:500px;
+                overflow:scroll;
+                min-width:500px;
+                display:box;
+                display:-moz-box;
+                display:-webkit-box;
+                box-orient:horizontal;
+                -moz-box-orient:horizontal;
+                -webkit-box-orient:horizontal;
+            }
+            #left,#right{
+                border:solid 1px #f00;
+                font-size:22px;
+                text-align:left;
+                line-height:500px;
+                font-weight:bold;
+                -moz-box-sizing:border-box;
+            }
+            #left{
+                width:100px;
+            }
+            #right{
+                border-left:0xp none;
+                box-flex:1;
+                -moz-box-flex:1;
+                -webkit-box-flex:1;
+            }
+        </style>
+        </head>
+        <body>
+             <div id="container">
+                 <div id="left"></div>
+                 <div id=right></div>
+             </div>
+             <script type="text/javascript">
+                 var ow=124;
+                 var m=false;
+                 document.getElementById("container").onmousedown=function(event){
+                     if(event.clientX>(ow-20)&&event.clientX<ow){
+                         m=true;
+                     }
+                     console.log(event.clientX);
+                 }
+                 document.getElementById("container").onmousemove=function(event){
+                     if(m){
+                         changeMove(event.clientX);    
+                     }
+                     if(event.clientY>0 && event.clientY>500){
+                         m=false;
+                     }
+                 }
+                 document.getElementById("container").onmouseup=function(event){
+                     m=false;
+                     ow=event.clientX;
+        
+                    
+                 }
+                function changeMove(mnum){
+        
+                    document.getElementById("left").style.width=mnum+'px';
+        
+                }
+             </script>
+
+</body>
+</html>
