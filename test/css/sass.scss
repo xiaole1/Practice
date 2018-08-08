@@ -1,0 +1,154 @@
+@charset "utf-8";
+// //变量
+$maincolor : #092873;
+$siteWidth : 1024px;
+$borderStyle : dotted;
+body {
+  color: $maincolor;
+  border: 1px $borderStyle $maincolor;
+  max-width: $siteWidth;
+}
+
+//嵌套
+// nav { 
+//     ul { 
+//        margin: 0; 
+//        padding: 0; 
+//     } 
+//     li { 
+//        display: inline-block; 
+//     } 
+//     a { 
+//        display: block; 
+//        padding: 6px 12px; 
+//        text-decoration: none; 
+//     } 
+// }
+
+//运算符
+// body {
+//   margin: (14px/2);
+//   top: 50px + 100px;
+//   right: 80 * 10%;
+// }
+
+
+// //颜色函数
+// $color: #0982C1;
+// h1 {
+//   background: $color;
+//   border: 3px solid darken($color, 50%);
+// }
+
+// // 继承
+// .message {
+//   border: 1px solid #ccc;
+//   padding: 10px;
+//   color: #333;
+// }
+// .success {
+//   @extend .message;
+//   border-color: green;
+// }
+// .error {
+//   @extend .message;
+//   border-color: red;
+// }
+// .warning {
+//   @extend .message;
+//   border-color: yellow;
+// }
+
+// //Mixins（混入）
+// @mixin error($borderWidth: 2px) {
+//   border: $borderWidth solid #F00;
+//   color: #F00;
+// }
+// .generic-error {
+//   padding: 20px;
+//   margin: 4px;
+//   @include error(); //这里调用默认 border: 2px solid #F00;
+// }
+// .login-error {
+//   left: 12px;
+//   position: absolute;
+//   top: 20px;
+//   @include error(5px); //这里调用 border:5px solid #F00;
+// }
+
+// //3D文字
+// @mixin text3d($color) {
+//   color: $color;
+//   text-shadow: 1px 1px 0px darken($color, 5%),
+//                2px 2px 0px darken($color, 10%),
+//                3px 3px 0px darken($color, 15%),
+//                4px 4px 0px darken($color, 20%),
+//                4px 4px 2px #000;
+// }
+
+// h1 {
+//   font-size: 32pt;
+//   @include text3d(#0982c1);
+// }
+
+//列 (Columns)
+$siteWidth: 1024px;
+$gutterWidth: 20px;
+$sidebarWidth: 300px;
+body {
+  margin: 0 auto;
+  width: $siteWidth;
+}
+.content {
+  float: left;
+  width: $siteWidth - ($sidebarWidth+$gutterWidth);
+}
+.sidebar {
+  float: left;
+  margin-left: $gutterWidth;
+  width: $sidebarWidth;
+}
+
+// //if
+// $lte7: true;
+// $type: monster;
+// .ib{
+//     display:inline-block;
+//     @if $lte7 {
+//         *display:inline;
+//         *zoom:1;
+//     }
+// }
+// p {
+//   @if $type == ocean {
+//     color: blue;
+//   } @else if $type == matador {
+//     color: red;
+//   } @else if $type == monster {
+//     color: green;
+//   } @else {
+//     color: black;
+//   }
+// }
+
+// //for
+// @for $i from 1 to 10 {
+//   .border-#{$i} {
+//     border: #{$i}px solid blue;
+//   }
+// }
+
+// //while
+// $i: 6;
+// @while $i > 0 {
+//   .item-#{$i} { width: 2em * $i; }
+//   $i: $i - 2;
+// }
+
+// //each
+// $animal-list: puma, sea-slug, egret, salamander;
+// @each $animal in $animal-list {
+//   .#{$animal}-icon {
+//     background-image: url('/images/#{$animal}.png');
+//   }
+// }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>jQuery幻灯片插件Owl Carousel演示-显示上一张/下一张_dowebok</title>
+<style>
+#owl-demo { width: 900px; margin-left: auto; margin-right: auto;}
+#owl-demo .item{ display: block; margin: 5px;}
+#owl-demo img { display: block; width: 100%;}
+</style>
+<link href="css/owl.carousel.css" rel="stylesheet">
+<link href="css/owl.theme.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/owl.carousel.js"></script>
+<script>
+$(function(){
+	$('#owl-demo').owlCarousel({
+		navigation: true,
+		navigationText: ["上一个","下一个"]
+	});
+});
+</script>
+</head>
+
+<body>
+
+
+		<!-- Demo -->
+		<div id="owl-demo" class="owl-carousel">
+			<a class="item"><img src="img/owl1.jpg" alt=""></a>
+			<a class="item"><img src="img/owl2.jpg" alt=""></a>
+			<a class="item"><img src="img/owl3.jpg" alt=""></a>
+			<a class="item"><img src="img/owl4.jpg" alt=""></a>
+			<a class="item"><img src="img/owl5.jpg" alt=""></a>
+			<a class="item"><img src="img/owl6.jpg" alt=""></a>
+			<a class="item"><img src="img/owl7.jpg" alt=""></a>
+			<a class="item"><img src="img/owl8.jpg" alt=""></a>
+			<a class="item"><img src="img/owl1.jpg" alt=""></a>
+			<a class="item"><img src="img/owl2.jpg" alt=""></a>
+			<a class="item"><img src="img/owl3.jpg" alt=""></a>
+			<a class="item"><img src="img/owl4.jpg" alt=""></a>
+			<a class="item"><img src="img/owl5.jpg" alt=""></a>
+			<a class="item"><img src="img/owl6.jpg" alt=""></a>
+			<a class="item"><img src="img/owl7.jpg" alt=""></a>
+			<a class="item"><img src="img/owl8.jpg" alt=""></a>
+		</div>
+		<!-- Demo end -->
+
+		
+
+			
+</body>
+</html>

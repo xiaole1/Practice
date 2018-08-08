@@ -7,7 +7,9 @@ import Practice from './components/practice.vue'
 
 Vue.config.productionTip = false
 
-
+Vue.component('my-component',{
+  template:"<p>I am a globel component1</p>"
+})
 
 var info={template:"<p>I am the part component two!</p>"}
 /* eslint-disable no-new */

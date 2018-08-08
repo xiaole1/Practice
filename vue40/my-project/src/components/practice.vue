@@ -15,8 +15,6 @@ export default {
 }
 
 import Vue from 'vue';
-Vue.component('my-component',{
-  template:"<p>I am a globel component</p>"
-})
+
 
 </script>

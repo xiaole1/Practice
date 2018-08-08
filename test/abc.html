@@ -1,0 +1,65 @@
+<!doctype html>
+<head>
+    <style>
+        #container{
+            width:100%;
+            height:500px;
+            overflow:scroll;
+            min-width:500px;
+            display:box;
+            display:-moz-box;
+            display:-webkit-box;
+            box-orient:horizontal;
+            -moz-box-orient:horizontal;
+            -webkit-box-orient:horizontal;
+        }
+        #left,#right{
+            border:solid 1px #f00;
+            font-size:22px;
+            text-align:left;
+            line-height:500px;
+            font-weight:bold;
+            -moz-box-sizing:border-box;
+        }
+        #left{
+            width:100px;
+        }
+        #right{
+            border-left:0xp none;
+            box-flex:1;
+            -moz-box-flex:1;
+            -webkit-box-flex:1;
+        }
+    </style>
+    </head>
+    <body>
+         <div class="container">
+             <div class="left"></div>
+             <div class=right></div>
+         </div>
+         <script type="text/javascript">
+             var ow=144;
+             var m=true;
+             document.getElementById("container").onmousedown=function(event){
+                 if(event.clientX>(ow-20)&&event.clientX<ow){
+                     m=true;
+                 }
+             }
+             document.getElementById("container").onmousemove=function(event){
+                 if(m){
+                     changemove(event.clientX);    
+                 }
+             }
+             document.getElementById("container").onmouseup=function(event){
+                 m=false;
+                 ow=event.clientX;
+    
+                console.log(event.clientX);
+             }
+            function changeMove(mnum){
+    
+                document.getElementById("left").style.width=mnum+'px';
+    
+            }
+         </script>
+    </body>

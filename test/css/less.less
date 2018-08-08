@@ -1,0 +1,45 @@
+@color_r:#f00;
+@color_o:#ff8814;
+@color_w:#fff;
+@color_bg_gg:#ffecc7;
+
+@size_w:100%;
+@size_h_navli:40px;
+@size_h_gg:20px;
+
+@float_l:left;
+@float_r:right;
+
+.head{
+	width:@size_w;
+	height:@size_w;
+}
+.head #fenxiang{
+	float:right;
+}
+.head #sanheng{
+	float:left;
+}
+.banner{
+	width:@size_w;
+	img{
+	width:@size_w;
+	}
+	span{
+	background:@color_bg_gg;
+	width:@size_w;
+	height:@size_h_gg;
+	}
+}
+.nav{
+	width:@size_w;
+	background:@color_o;
+	li{
+	list-style-type:none;
+	float:left;
+	height:@size_h_navli;
+	line-height:@size_h_navli;
+	font-color:@color_w;
+	width:@size_w/4;
+	}
+}
