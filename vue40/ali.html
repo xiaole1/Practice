@@ -1,77 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+<html>
 
-        <style>
-            #container{
-                width:100%;
-                height:500px;
-                overflow:scroll;
-                min-width:500px;
-                display:box;
-                display:-moz-box;
-                display:-webkit-box;
-                box-orient:horizontal;
-                -moz-box-orient:horizontal;
-                -webkit-box-orient:horizontal;
-            }
-            #left,#right{
-                border:solid 1px #f00;
-                font-size:22px;
-                text-align:left;
-                line-height:500px;
-                font-weight:bold;
-                -moz-box-sizing:border-box;
-            }
-            #left{
-                width:100px;
-            }
-            #right{
-                border-left:0xp none;
-                box-flex:1;
-                -moz-box-flex:1;
-                -webkit-box-flex:1;
-            }
-        </style>
-        </head>
-        <body>
-             <div id="container">
-                 <div id="left"></div>
-                 <div id=right></div>
-             </div>
-             <script type="text/javascript">
-                 var ow=124;
-                 var m=false;
-                 document.getElementById("container").onmousedown=function(event){
-                     if(event.clientX>(ow-20)&&event.clientX<ow){
-                         m=true;
-                     }
-                     console.log(event.clientX);
-                 }
-                 document.getElementById("container").onmousemove=function(event){
-                     if(m){
-                         changeMove(event.clientX);    
-                     }
-                     if(event.clientY>0 && event.clientY>500){
-                         m=false;
-                     }
-                 }
-                 document.getElementById("container").onmouseup=function(event){
-                     m=false;
-                     ow=event.clientX;
-        
-                    
-                 }
-                function changeMove(mnum){
-        
-                    document.getElementById("left").style.width=mnum+'px';
-        
+    <head>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="vue.js"></script>
+        <title>组件传递数据Props</title>
+    </head>
+
+    <body style="background-color: lightgray;">
+        <h3>#使用props传递数据</h3>
+        <div id="dr01">
+            <div>组件实例的作用域是孤立的。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。</div>
+            <br />
+            <child msg="hello, vue.js!"></child>
+        </div>
+
+        <hr />
+
+        <h3>#camelCase vs. kebab-case</h3>
+        <div id="dr02">
+            <div>HTML 特性不区分大小写。名字形式为 camelCase 的 prop 用作特性时，需要转为 kebab-case（短横线隔开）</div>
+            <br />
+            <!-- kebab-case in html -->
+            <child02 my-message02="Hello, this is kebab-case message!"></child02>
+        </div>
+
+        <hr />
+
+        <h3>#动态Props</h3>
+        <div id="dr03">
+            <div>
+                <input v-model="parentMsg" placeholder="please input parentMsg" />
+            </div>
+            <br />
+            <!-- 用v-bind绑定数据parentMsg到组件中 -->
+            <child03 v-bind:my-message03="parentMsg"></child03>
+            <!-- 缩写v-bind-->
+            <child03 :my-message03="parentMsg"></child03>
+        </div>
+
+        <hr />
+
+        <h3>#字面量语法 VS 动态语法</h3>
+        <div id="dr04">
+            <!-- 这里传递是字符串 -->
+            <child04 my-message04="123+456"></child04>
+            <!-- 这里用了动态语法，传递的值会通过js的表达式计算，传递的是数字 -->
+            <child04 :my-message04="123+456"></child04>
+        </div>
+
+        <hr />
+
+        <h3>#Prop类型绑定（单向、双向）</h3>
+        <div id="dr05">
+            <div>
+                <div>vue实例：</div>
+                <input v-model="name" />
+            </div>
+            <br />
+            <div>
+                <div>component组件（默认）：</div>
+                <child05 :my-message05="name"></child05>
+                <div>component组件（once）：</div>
+                <child05 :my-message05.once="name"></child05>
+                <div>component组件（sync）：</div>
+                <child05 :my-message05.sync="name"></child05>
+            </div>
+        </div>
+
+        <h3>#Prop验证</h3>
+        <div id="dr06">
+            <div>
+                <span>vue实例</span>
+                <div>
+                    name:{{dr.name}}, age:{{dr.age}}.
+                </div>
+                <div>
+                    <input v-model="twoWay" />
+                </div>
+            </div>
+            <br />
+            <div>
+                <span>vue自定义组件</span>
+                <child06 :msg_twoway.sync="telphone" ></child06>
+            </div>
+        </div>
+
+        <script>
+            //********************************************************************
+            //使用props传递数据
+            //注册组件"child"
+            Vue.component("child", {
+                //声明props属性
+                props: ['msg'],
+                //props可以用在模板内
+                //可以用"this.msg"设置
+                template: '<div>msg: {{msg}}</div>'
+            });
+            var dr01 = new Vue({
+                el: "#dr01",
+            });
+            //********************************************************************
+            //camelCase vs. kebab-case
+            //注册组件child02
+            Vue.component("child02", {
+                //在js中用驼峰命名法
+                props: ["myMessage02"],
+                template: "<div>myMessage02: {{myMessage02}}</div>"
+            });
+            var dr02 = new Vue({
+                el: "#dr02",
+            });
+            //********************************************************************
+            //动态Props
+            //注册组件myMessage03
+            Vue.component("child03", {
+                props: ['myMessage03'],
+                template: "<div>myMessage03: {{myMessage03}}</div>"
+            });
+            var dr03 = new Vue({
+                el: "#dr03",
+                data: {
+                    parentMsg: "Hello, this is parentMsg!",
                 }
-             </script>
+            });
+            //********************************************************************
+            //字面量语法 VS 动态语法
+            Vue.component("child04", {
+                props: ["myMessage04"],
+                template: "<div>myMessage04: {{myMessage04}}</div>",
+            });
+            var dr04 = new Vue({
+                el: "#dr04",
+            });
+            //********************************************************************
+            //Prop类型绑定
+            Vue.component("child05", {
+                props: ["myMessage05"],
+                template: '<input type="text" v-model="myMessage05" />'
+            });
+            var dr05 = new Vue({
+                el: "#dr05",
+                data: {
+                    name: "DarkRanger",
+                }
+            });
+            //********************************************************************
+            //Prop验证
+            Vue.component("child06", {
+                props: {
+                    //指定这个prop为双向绑定
+                    //如果绑定类型不对将抛出一条警告
+                    msg_twoway: {
+                        type: String,
+                        twoWay: true,
+                    },
+                },
+                template: '<div>msg_twoway:<input v-model="msg_twoway"></div>'
+            });
+            var dr06 = new Vue({
+                el: "#dr06",
+                data: {
+                    telphone: "0356-1234567",
+                    mobilephone: 15912345678,
+                    dr: {
+                        name: "DarkRanger",
+                        age: 25
+                    },
+                    drJson: '{"name":"DarkRanger","age":25}',
+                }
+            })
+        </script>
+    </body>
 
-</body>
 </html>

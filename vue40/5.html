@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue</title>
+<script src="../vue.js"></script>
+<script type="text/javascript" src="../velocity.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../animate.css">
+<style type="text/css">
+div{
+  margin:0 auto;
+  font-size:2em;
+  padding:0 40px;
+}
+div p{
+  text-align:center;
+  transform-origin :"50% 50%";
+}
+
+</style>
+</head>
+<body>
+<div id="example-4">
+  <button @click="show = !show">
+    Toggle
+  </button>
+  <transition
+    v-on:before-enter="beforeEnter"
+    v-on:enter="enter"
+    v-on:leave="leave"
+    v-bind:css="false"
+  >
+    <p v-if="show">
+      Imgss
+    </p>
+  </transition>
+</div>
+ 
+<script>  
+ new Vue({
+  el: '#example-4',
+  data: {
+    show: false
+  },
+  methods: {
+    beforeEnter: function (el) {
+      el.style.opacity = 0
+      el.style.transformOrigin = '50% 50%'
+    },
+    enter: function (el, done) {
+      Velocity(el, { opacity: 1,translateX:'20px', fontSize: '2em' }, { duration: 300 });
+      Velocity(el, { translateX:'0px',fontSize: '1em' }, { complete: done })
+    },
+    leave: function (el, done) {
+      Velocity(el, { rotateZ: '1080deg',scale:'0.1' ,opacity: 0},{duration:3000}, { complete: done });
+    }
+  }
+})
+</script>  
+</body>
+</html>
